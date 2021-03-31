@@ -3,12 +3,12 @@ import user_interface
 
 class Simulation:
     def __init__(self):
-        self.run_simulation()
+        pass
 
     @staticmethod
     def run_simulation():
         """The central method called in main.py."""
-        will_proceed = False
+        will_proceed = True
         while will_proceed:
             user_option = user_interface.simulation_main_menu()
             if user_option == 1:

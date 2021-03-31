@@ -9,6 +9,7 @@ def simulation_main_menu():
         print("\tPress -1- to create a sweepstakes")
         print("\tPress -2- to create and assign a contestant")
         print("\tPress -3- to generate a sweepstakes winner")
+        print("\tPress -4- to exit")
         user_input = try_parse_int(input())
         validate_user_selection = validate_main_menu(user_input)
     return validate_user_selection[1]
@@ -20,6 +21,7 @@ def validate_main_menu(user_input):
         1: (True, 1),
         2: (True, 2),
         3: (True, 3),
+        4: (False, 4),
     }
     return switcher.get(user_input, (False, None))
 
