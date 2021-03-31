@@ -1,4 +1,4 @@
-from sweepstakes_starter.sweepstakes import user_interface
+import user_interface
 
 
 class Simulation:
