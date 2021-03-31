@@ -7,8 +7,8 @@ class SweepstakesQueueManager:
         self.sweepstake_queue = Queue()
         pass
 
-    def insert_sweepstakes(self, sweepstakes):
-        self.sweepstake_queue.enqueue(sweepstakes)
+    def insert_sweepstakes(self, sweepstake):
+        self.sweepstake_queue.enqueue(sweepstake)
         pass
 
     def get_sweepstakes(self):

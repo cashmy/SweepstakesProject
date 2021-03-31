@@ -1,4 +1,4 @@
-# import os
+import os
 
 
 def simulation_main_menu():
@@ -12,6 +12,8 @@ def simulation_main_menu():
         print("\tPress -4- to exit")
         user_input = try_parse_int(input())
         validate_user_selection = validate_main_menu(user_input)
+        if validate_user_selection[0] is False:
+            print("Not a valid selection try again")
     return validate_user_selection[1]
 
 
@@ -21,7 +23,7 @@ def validate_main_menu(user_input):
         1: (True, 1),
         2: (True, 2),
         3: (True, 3),
-        4: (False, 4),
+        4: (True, 4),
     }
     return switcher.get(user_input, (False, None))
 
@@ -39,15 +41,15 @@ def display_welcome():
 
 def output_text(text):
     """User input method that will print to console any string passed in as an argument"""
-    print("text")
+    print(text)
 
 
-# def clear_console():
-#     """Used for clearing out the console. No errors."""
-#     os.system('cls' if os.name == 'nt' else "clear")
+def clear_console():
+    """Used for clearing out the console. No errors."""
+    os.system('cls' if os.name == 'nt' else "clear")
 
 
-def continue_prompt(text):
+def bool_prompt(text):
     """Validates a 'y' or 'yes' string and returns a True value. No errors."""
     switcher = {
         "y": True,
@@ -64,3 +66,35 @@ def try_parse_int(value):
     except:
         return 0
 
+
+def contest_info_print():
+    # TODO: print out information here
+    pass
+
+
+def sweeps_type_menu():
+    validate_user_selection = (False, None)
+    while validate_user_selection[0] is False:
+        print("\t\t-Simulation menu-")
+        print("\tPress -1- to create a sweepstakes Stack")
+        print("\tPress -2- to create a sweepstakes Queue")
+        print("\tPress -3- to exit")
+        user_input = try_parse_int(input())
+        validate_user_selection = validate_main_menu(user_input)
+        if validate_user_selection[0] is False:
+            print("Not a valid selection try again")
+    return validate_user_selection[1]
+
+
+def validate_sweeps_type_menu(user_input):
+    """Validation function that checks if 'user_input' argument is an int 1-3. No errors."""
+    switcher = {
+        1: (True, 1),
+        2: (True, 2),
+        3: (True, 3),
+    }
+    return switcher.get(user_input, (False, None))
+
+
+def enter_sweepstake_name():
+    return input('Please enter the name of this sweepstake: ')

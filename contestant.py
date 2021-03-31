@@ -8,4 +8,5 @@ class Contestant:
         self.registration_number = registration_number
 
     def notify(self, is_winner):
+        # TODO: Send out message to contestant
         pass

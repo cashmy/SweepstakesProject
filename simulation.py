@@ -17,5 +17,8 @@ class Simulation:
                 pass
             elif user_option == 3:
                 pass
+            elif user_option == 4:
+                user_interface.output_text('Goodbye.')
+                return
             else:
                 will_proceed = False
