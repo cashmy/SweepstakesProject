@@ -34,9 +34,21 @@ class Sweepstake:
         winner_index = random.randint(0, len(self.contestants) - 1)
         winner = self.contestants[winner_index]
         winner.winner_status = True
-        # TODO: call notify contestants
+        user_interface.output_text(f'The winner for {self.name} is '
+                                   f'{winner.first_name} {winner.last_name}')
         return winner  # contestant
 
-    def print_contestant_info(self, contestant):
-        # TODO: make a call user_interface
+    def print_contestants(self):
+        user_interface.output_text('\n\t\t***Contestant List ***')
+        for contestant in self.contestants:
+            user_interface.output_text(f'Name: {contestant.first_name} {contestant.last_name} '
+                                       f'Email: {contestant.email} '
+                                       f'Registration Number: {contestant.registration_number} ')
         return
+
+    def notify_all_contestants(self, winning_contestant):
+        for contestant in self.contestants:
+            if contestant == winning_contestant:
+                contestant.notify(True)
+            else:
+                contestant.notify(False)

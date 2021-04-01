@@ -11,8 +11,8 @@ class Simulation:
     def run_simulation(self):
         check = user_interface.display_welcome()
         if check:
-            new_marketing_firm_manager = MarketingFirmCreator()
-            self.new_marketing_firm = new_marketing_firm_manager.choose_manager()
+            firm_creator = MarketingFirmCreator()
+            self.new_marketing_firm = firm_creator.create_firm_menu()
             self.simulation_menu()
         else:
             return
@@ -26,27 +26,37 @@ class Simulation:
                 self.new_marketing_firm.create_sweepstakes()
                 self.current_sweepstake = self.new_marketing_firm.sweepstakes.rtv_sweepstakes()
             elif user_option == 2:
-                if self.current_sweepstake is not None:
+                if self.current_sweepstake is None:
+                    user_interface.require_sweepstakes_error()
+                else:
+                    # Add a contestant - This separation of "Adding" and "Registering"
+                    #     allows for Dependency Injection
                     contestant = self.standard_contestant(self.current_sweepstake)
+                    # Now register a contestant -
                     self.current_sweepstake.register_contestant(contestant)
                     self.current_sweepstake.print_sweepstake_status()
-                else:
-                    user_interface.output_text('You must create a sweepstake first.')
             elif user_option == 3:
-                if self.current_sweepstake is not None:
+                if self.current_sweepstake is None:
+                    user_interface.require_sweepstakes_error()
+                else:
+                    self.current_sweepstake.print_contestants()
+            elif user_option == 4:
+                if self.current_sweepstake is None:
+                    user_interface.require_sweepstakes_error()
+                else:
                     # Pick a winner and notify contestants
                     contestant = self.current_sweepstake.pick_winner()
-                    user_interface.output_text(f'The winner for {self.current_sweepstake.name} is '
-                                               f'{contestant.first_name} {contestant.last_name}')
+                    self.current_sweepstake.notify_all_contestants(contestant)
+            elif user_option == 5:
+                if len(self.new_marketing_firm.sweepstakes) > 0:
+                    sweepstake = self.new_marketing_firm.sweepstakes.get_sweepstakes()
+                    user_interface.output_text(f'\nSweepstake {sweepstake.name} has been removed.')
                 else:
-                    user_interface.output_text('You must create a sweepstake first.')
-            elif user_option == 4:
-                sweepstake = self.new_marketing_firm.sweepstakes.get_sweepstakes()
-                user_interface.output_text(f'\nSweepstake {sweepstake.name} has been removed.')
+                    user_interface.output_text('Nothing to remove')
                 # Now update with next available sweepstake
                 if len(self.new_marketing_firm.sweepstakes) > 0:
                     self.current_sweepstake = self.new_marketing_firm.sweepstakes.rtv_sweepstakes()
-            elif user_option == 5:
+            elif user_option == 6:
                 user_interface.output_text('Goodbye.')
                 return
             else:

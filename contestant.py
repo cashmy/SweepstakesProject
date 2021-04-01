@@ -1,3 +1,5 @@
+import user_interface
+
 
 class Contestant:
 
@@ -8,5 +10,10 @@ class Contestant:
         self.registration_number = registration_number
 
     def notify(self, is_winner):
-        # TODO: Send out message to contestant
+        if is_winner:
+            text = 'You are the WINNER!'
+        else:
+            text = 'Unfortunately you did not win this time. Please register for our next sweepstakes.'
+        user_interface.output_text(f'\n{self.first_name}, we wanted to let you know!')
+        user_interface.output_text(text)
         pass

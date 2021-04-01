@@ -8,9 +8,10 @@ def simulation_main_menu():
         print("\n\t\t-Sweepstake Processing-")
         print("\tPress -1- to create a sweepstakes")
         print("\tPress -2- to create and assign a contestant")
-        print("\tPress -3- to generate a sweepstakes winner")
-        print("\tPress -4- to remove a sweepstakes")
-        print("\tPress -5- to exit")
+        print("\tPress -3- to list all contestants")
+        print("\tPress -4- to generate a sweepstakes winner")
+        print("\tPress -5- to remove a sweepstakes")
+        print("\tPress -6- to exit")
         user_input = try_parse_int(input())
         validate_user_selection = validate_main_menu(user_input)
         if validate_user_selection[0] is False:
@@ -26,6 +27,7 @@ def validate_main_menu(user_input):
         3: (True, 3),
         4: (True, 4),
         5: (True, 5),
+        6: (True, 6)
     }
     return switcher.get(user_input, (False, None))
 
@@ -107,3 +109,13 @@ def get_contestant_info():
     last_name = input("Enter contestant's last name: ")
     email = input("Enter contestant's email: ")
     return first_name, last_name, email
+
+
+def get_manager_name():
+    name = input('\nPlease enter the name of the manager: ')
+    return name
+
+
+def require_sweepstakes_error():
+    print('You must create a sweepstake first.')
+    return
