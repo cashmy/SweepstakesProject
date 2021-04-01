@@ -5,11 +5,12 @@ def simulation_main_menu():
     """Main menu prompting user to choose an option"""
     validate_user_selection = (False, None)
     while validate_user_selection[0] is False:
-        print("\t\t-Simulation menu-")
+        print("\n\t\t-Sweepstake Processing-")
         print("\tPress -1- to create a sweepstakes")
         print("\tPress -2- to create and assign a contestant")
         print("\tPress -3- to generate a sweepstakes winner")
-        print("\tPress -4- to exit")
+        print("\tPress -4- to remove a sweepstakes")
+        print("\tPress -5- to exit")
         user_input = try_parse_int(input())
         validate_user_selection = validate_main_menu(user_input)
         if validate_user_selection[0] is False:
@@ -24,6 +25,7 @@ def validate_main_menu(user_input):
         2: (True, 2),
         3: (True, 3),
         4: (True, 4),
+        5: (True, 5),
     }
     return switcher.get(user_input, (False, None))
 
@@ -31,7 +33,7 @@ def validate_main_menu(user_input):
 def display_welcome():
     """Initial method asking user if they'll make a purchase. No errors."""
     print("\nWelcome to the Sweepstakes backend management. \n")
-    user_response = continue_prompt("Would you like to work on your sweepstakes database? (y/n):")
+    user_response = bool_prompt("Would you like to work on your sweepstakes database? (y/n): ")
     if user_response:
         return True
     else:
@@ -75,12 +77,12 @@ def contest_info_print():
 def sweeps_type_menu():
     validate_user_selection = (False, None)
     while validate_user_selection[0] is False:
-        print("\t\t-Simulation menu-")
+        print("\n\t\t-Sweepstakes MANAGER Type-")
         print("\tPress -1- to create a sweepstakes Stack")
         print("\tPress -2- to create a sweepstakes Queue")
         print("\tPress -3- to exit")
         user_input = try_parse_int(input())
-        validate_user_selection = validate_main_menu(user_input)
+        validate_user_selection = validate_sweeps_type_menu(user_input)
         if validate_user_selection[0] is False:
             print("Not a valid selection try again")
     return validate_user_selection[1]

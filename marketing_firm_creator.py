@@ -11,12 +11,13 @@ class MarketingFirmCreator:
     def choose_manager():
         will_proceed = True
         while will_proceed:
-            user_option = user_interface.simulation_main_menu()
+            user_option = user_interface.sweeps_type_menu()
             if user_option == 1:  # Create a stack
                 manager_type = 'stack'
             elif user_option == 2:  # Create a Queue
                 manager_type = 'queue'
             elif user_option == 3:
+                quit(0)
                 return
             will_proceed = False
         else:
