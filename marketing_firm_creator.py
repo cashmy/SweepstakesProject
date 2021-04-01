@@ -10,7 +10,7 @@ class MarketingFirmCreator:
         pass
 
     # This menu will allow the user to select a type of sweepstakes manager object: Queue or Stack
-    # This in turn, will all for Dependency Injection in the 'create_firm' method
+    # This in turn, will allow for Dependency Injection in the 'create_firm' method
     def create_firm_menu(self):
         manager = self.assign_manager()
         will_proceed = True

@@ -9,7 +9,7 @@ class Sweepstake:
         self.name = name
         self.contestants = []
 
-    # Original way that is NON High Dependency Low Cohesion
+    # Original method:
     # This method is NOT a dependency injection design pattern
     def register_contestant_non_hd_lc(self, first_name, last_name, email):
         registration_number = len(self.contestants)+1
