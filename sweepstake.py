@@ -9,9 +9,23 @@ class Sweepstake:
         self.name = name
         self.contestants = []
 
-    def register_contestant(self, first_name, last_name, email):
+    # Original way that is NON High Dependency Low Cohesion
+    # This method is NOT a dependency injection design pattern
+    def register_contestant_non_hd_lc(self, first_name, last_name, email):
         registration_number = len(self.contestants)+1
         self.contestants.append(Contestant(first_name, last_name, email, registration_number))
+
+    # Method that uses Dependency Injection
+    # Contestant object will have been already created
+    def register_contestant(self, contestant_obj):
+        try:
+            self.contestants.append(contestant_obj)
+        except AttributeError as error:
+            user_interface.output_text("Contest doesn't have a notify method - not added")
+            user_interface.output_text(error)  # TODO: Change this to output to a logging module.
+
+    def next_available_registration_number(self):
+        return len(self.contestants) + 1
 
     def print_sweepstake_status(self):
         user_interface.output_text(f'\nSweepstake {self.name} currently has {len(self.contestants)} contestants.')

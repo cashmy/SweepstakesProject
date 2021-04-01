@@ -6,6 +6,9 @@ class SweepstakesStackManager:
     def __init__(self):
         self.sweepstake_stack = Stack()
 
+    def __len__(self):
+        return len(self.sweepstake_stack)
+
     def insert_sweepstakes(self, sweepstake):
         self.sweepstake_stack.push(sweepstake)
 

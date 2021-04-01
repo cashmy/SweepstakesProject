@@ -6,6 +6,9 @@ class SweepstakesQueueManager:
     def __init__(self):
         self.sweepstake_queue = Queue()
 
+    def __len__(self):
+        return len(self.sweepstake_queue)
+
     def insert_sweepstakes(self, sweepstake):
         self.sweepstake_queue.enqueue(sweepstake)
 

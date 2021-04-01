@@ -100,3 +100,10 @@ def validate_sweeps_type_menu(user_input):
 
 def enter_sweepstake_name():
     return input('Please enter the name of this sweepstake: ')
+
+
+def get_contestant_info():
+    first_name = input("Enter contestant's first name: ")
+    last_name = input("Enter contestant's last name: ")
+    email = input("Enter contestant's email: ")
+    return first_name, last_name, email
