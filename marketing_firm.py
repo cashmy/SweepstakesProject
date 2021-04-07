@@ -3,9 +3,9 @@ from sweepstake import Sweepstake
 
 
 class MarketingFirm:
-    def __init__(self, manager):
+    def __init__(self, manager, manager_type_obj):
         self.manager = manager
-        self.sweepstakes = None
+        self.sweepstakes = manager_type_obj
 
 
     def create_sweepstakes(self):

@@ -38,7 +38,7 @@ class MarketingFirmCreator:
     # This method takes a manager_type_obj variable for Dependency Injection assignment.
     @staticmethod
     def create_firm(manager, manager_type_obj, obj_desc):
-        marketing_firm = MarketingFirm(manager)
-        marketing_firm.sweepstakes = manager_type_obj
+        marketing_firm = MarketingFirm(manager, manager_type_obj)
+        # marketing_firm.sweepstakes = manager_type_obj
         user_interface.output_text(f'\n {obj_desc} created.')
         return marketing_firm

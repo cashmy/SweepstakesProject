@@ -1,5 +1,6 @@
 import user_interface
 from contestant import Contestant
+from email_api import EmailApi
 import random
 
 
@@ -47,8 +48,14 @@ class Sweepstake:
         return
 
     def notify_all_contestants(self, winning_contestant):
+        email_list = []
         for contestant in self.contestants:
             if contestant == winning_contestant:
                 contestant.notify(True)
+                winner_name = winning_contestant.first_name + ' ' + winning_contestant.last_name
             else:
                 contestant.notify(False)
+            if contestant.email != '':
+                email_list.append(contestant.email)
+        email_campaign = EmailApi()
+        email_campaign.connect_and_send(email_list, winner_name)
